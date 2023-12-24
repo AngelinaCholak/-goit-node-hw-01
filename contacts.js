@@ -2,10 +2,10 @@ const fs = require("node:fs/promises");
 const path = require("node:path");
 const crypto = require("node:crypto");
 
-// const contactsPath = path.resolve("db", "contacts.json");
-const contactsPath = () => {
-    return path.resolve("db", "contacts.json");
-}
+const contactsPath = path.resolve("db", "contacts.json");
+// const contactsPath = () => {
+//     return path.resolve("db", "contacts.json");
+// }
 
 const readFile = async() => {
     try {
@@ -18,10 +18,7 @@ const readFile = async() => {
 
 const writeFile = async (contacts) => {
     try {
-        await fs.writeFile(
-          contactsPath(),
-          JSON.stringify(contacts, undefined, 2)
-        );
+        await fs.writeFile(contactsPath(), JSON.stringify(contacts, null, 2));
     } catch (error) {
         throw new Error(`Error reading contacts: ${error.message}`);
     }
